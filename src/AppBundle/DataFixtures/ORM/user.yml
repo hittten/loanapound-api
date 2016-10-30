@@ -1,0 +1,9 @@
+\AppBundle\Entity\User:
+    admin:
+        id: 1
+        username (unique): admin
+        plainPassword:  admin
+        firstName: <firstName()>
+        email (unique): admin@domain.com
+        roles: ['ROLE_SUPER_ADMIN']
+        enabled: true

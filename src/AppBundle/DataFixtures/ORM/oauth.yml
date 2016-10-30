@@ -1,0 +1,19 @@
+AppBundle\Entity\Client:
+    oauth_client_1:
+        id: 1
+        randomId: randomid
+        secret: secret
+        redirectUris:
+            - http://dev.loanapound.com      # used with apache
+            - http://localhost:3000          # used with localhost gulp server
+            - http://dev.loanapound.com:3000 # used with vagrant gulp server
+        allowedGrantTypes: ['client_credentials', 'token', 'authorization_code']
+
+\AppBundle\Entity\AccessToken:
+    oauth_access_token_admin:
+        id: 1
+        token: "token"
+        scope: null
+        client: '@oauth_client_1'
+        user: '@admin'
+        expiresAt: 1587758279

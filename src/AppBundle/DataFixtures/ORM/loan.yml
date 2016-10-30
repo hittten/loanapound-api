@@ -1,0 +1,5 @@
+\AppBundle\Entity\Loan:
+    loan_{1..3}:
+        provider: <name()>
+        borrowingRate: <numberBetween(1, 10000)>
+        term: <numberBetween(1, 100)>
