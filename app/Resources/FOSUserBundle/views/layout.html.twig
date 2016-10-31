@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html ng-app="loanPound">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Loan Pound App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            font-size: 12px;
+            text-align: left;
+            line-height: 14px;
+            font-weight: 300;
+        }
+
+        header {
+            box-shadow: 0 1px 5px rgba(190, 190, 190, 0.5);
+            background: #F4F4F4;
+        }
+
+        #content {
+            padding-bottom: 20px;
+        }
+
+        .content {
+            margin: 10px 0;
+        }
+
+        form .form-control {
+            font-size: 14px;
+            border-radius: 1px;
+        }
+
+        form label {
+            font-size: 14px;
+        }
+
+        footer {
+            padding: 5px;
+            background: #000000;
+            color: #FFFFFF;
+        }
+
+        footer p {
+            margin: 0;
+            padding: 10px 0;
+        }
+
+        footer a, footer a:hover, footer a:active, footer a:focus {
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+
+        .btn {
+            border-radius: 1px;
+        }
+
+        @media (max-width: 767px) {
+        }
+
+        @media (min-width: 768px) {
+        }
+
+        @media (min-width: 992px) {
+        }
+
+        @media (min-width: 1200px) {
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Loan A Pound</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Profile</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                {% endif %}
+            </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+    </nav></header>
+<div id="content" class="container">
+    {% if app.request.hasPreviousSession %}
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="flash-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+    <div>
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+    </div>
+</div>
+<footer>
+    <div class="container text-center">
+        <p>© Loan Pound App, All rights reserved</p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</body>
+</html>
